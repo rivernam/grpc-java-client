@@ -1,0 +1,25 @@
+<configuration scan="true" scanPeriod="10 seconds">
+    <property name="PATTERN_LAYOUT" value="%date{HH:mm:ss.SSS} %micros [%-5level] [%thread] [%logger{36}] [%file] - %msg%n"/>
+    <property name="LOG_DIR" value="logs"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN_LAYOUT}</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/grpc-client.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/grpc-server-log-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN_LAYOUT}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example.helloservice";
+
+// The greeting service definition.
+service HelloService {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloResponse) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  int32 index = 1;
+  string requestTime = 2;
+}
+
+// The response message containing the greetings
+message HelloResponse {
+  string message = 1;
+}
